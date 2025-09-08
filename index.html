@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduBoard — Student Progress Dashboard</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS (no JS required for this task) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <nav class="sidebar bg-white shadow-sm" aria-label="Main navigation">
+      <div class="sidebar-top p-3 d-flex align-items-center gap-2">
+        <img src="data:image/jpeg;base64,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" alt="EduBoard logo" class="logo rounded-circle">
+        <div>
+          <h1 class="h6 m-0">EduBoard</h1>
+          <small class="text-muted">Student Portal</small>
+        </div>
+      </div>
+
+      <ul class="nav flex-column mt-3 px-2" role="menu" aria-label="Sidebar links">
+        <li class="nav-item">
+          <a class="nav-link active d-flex align-items-center gap-2" href="#" role="menuitem">
+            <i class="fa-solid fa-chart-line sidebar-icon"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="#" role="menuitem">
+            <i class="fa-solid fa-book-open sidebar-icon"></i> <span>Subjects</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="#" role="menuitem">
+            <i class="fa-solid fa-calendar-check sidebar-icon"></i> <span>Attendance</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="#" role="menuitem">
+            <i class="fa-solid fa-user sidebar-icon"></i> <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item mt-auto">
+          <a class="nav-link d-flex align-items-center gap-2" href="#" role="menuitem">
+            <i class="fa-solid fa-gear sidebar-icon"></i> <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main content area -->
+    <div class="main-area">
+
+      <!-- Top navbar/header -->
+      <header class="topbar d-flex align-items-center justify-content-between px-3 shadow-sm">
+        <div class="d-flex align-items-center gap-3">
+          <!-- mobile menu toggler (purely visual; no JS) -->
+          <button class="btn btn-sm btn-light d-md-none" aria-hidden="true" title="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="student-brief d-flex align-items-center gap-3">
+            <img src="https://media-content.ccbp.in/ccbp_prod/media/profile_pic/45c6637d-c64d-4d4b-88d1-074bbdca668b.jpeg" alt="Student avatar" class="avatar rounded-circle">
+            <div class="d-none d-sm-block">
+              <div class="fw-600">Sai Chandu</div>
+              <small class="text-muted">B.Tech — Computer Science</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-ghost" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-dot" aria-hidden="true"></span>
+          </button>
+
+          <button class="btn btn-ghost" aria-label="Help">
+            <i class="fa-regular fa-circle-question"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="p-4" id="main" tabindex="-1">
+        <div class="container-fluid">
+
+          <!-- Overview cards -->
+          <section aria-labelledby="overview-heading" class="mb-4">
+            <h2 id="overview-heading" class="h5 visually-hidden">Student Overview</h2>
+            <div class="row g-3">
+              <article class="col-6 col-md-3">
+                <div class="card overview-card p-3 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h3 class="h6 mb-1">GPA</h3>
+                      <p class="display-6 mb-0">8.7</p>
+                    </div>
+                    <i class="fa-solid fa-graduation-cap fa-2x text-primary"></i>
+                  </div>
+                  <small class="text-muted">Cumulative</small>
+                </div>
+              </article>
+
+              <article class="col-6 col-md-3">
+                <div class="card overview-card p-3 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h3 class="h6 mb-1">Attendance</h3>
+                      <p class="display-6 mb-0">92%</p>
+                    </div>
+                    <i class="fa-solid fa-user-check fa-2x text-success"></i>
+                  </div>
+                  <small class="text-muted">This semester</small>
+                </div>
+              </article>
+
+              <article class="col-6 col-md-3">
+                <div class="card overview-card p-3 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h3 class="h6 mb-1">Assignments Due</h3>
+                      <p class="display-6 mb-0">3</p>
+                    </div>
+                    <i class="fa-solid fa-clock fa-2x text-warning"></i>
+                  </div>
+                  <small class="text-muted">Next 7 days</small>
+                </div>
+              </article>
+
+              <article class="col-6 col-md-3">
+                <div class="card overview-card p-3 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h3 class="h6 mb-1">Total Credits</h3>
+                      <p class="display-6 mb-0">88</p>
+                    </div>
+                    <i class="fa-solid fa-layer-group fa-2x text-info"></i>
+                  </div>
+                  <small class="text-muted">Completed</small>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <div class="row g-4">
+
+            <!-- Left column: Progress table + Deadlines -->
+            <section class="col-12 col-lg-8">
+              <article class="card mb-4 p-3">
+                <header class="d-flex align-items-center justify-content-between mb-3">
+                  <h3 class="h6 m-0">Course Progress</h3>
+                  <small class="text-muted">Updated: Sep 7, 2025</small>
+                </header>
+
+                <div class="table-responsive">
+                  <table class="table table-borderless align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col" class="text-center">Credits</th>
+                        <th scope="col">Progress</th>
+                        <th scope="col" class="text-end">Grade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="fw-600">Data Structures</div>
+                          <small class="text-muted">Prof. A. Kumar</small>
+                        </td>
+                        <td class="text-center">4</td>
+                        <td style="min-width:220px;">
+                          <div class="progress-track" aria-hidden="true">
+                            <div class="progress-fill" style="width:85%"></div>
+                          </div>
+                          <small class="text-muted">85% complete</small>
+                        </td>
+                        <td class="text-end"><span class="badge grade-badge">A-</span></td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <div class="fw-600">Operating Systems</div>
+                          <small class="text-muted">Prof. R. Sharma</small>
+                        </td>
+                        <td class="text-center">4</td>
+                        <td>
+                          <div class="progress-track" aria-hidden="true">
+                            <div class="progress-fill" style="width:72%"></div>
+                          </div>
+                          <small class="text-muted">72% complete</small>
+                        </td>
+                        <td class="text-end"><span class="badge grade-badge">B+</span></td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <div class="fw-600">Machine Learning</div>
+                          <small class="text-muted">Prof. S. Verma</small>
+                        </td>
+                        <td class="text-center">3</td>
+                        <td>
+                          <div class="progress-track" aria-hidden="true">
+                            <div class="progress-fill" style="width:58%"></div>
+                          </div>
+                          <small class="text-muted">58% complete</small>
+                        </td>
+                        <td class="text-end"><span class="badge grade-badge">B</span></td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <div class="fw-600">Database Systems</div>
+                          <small class="text-muted">Prof. L. Rao</small>
+                        </td>
+                        <td class="text-center">3</td>
+                        <td>
+                          <div class="progress-track" aria-hidden="true">
+                            <div class="progress-fill" style="width:93%"></div>
+                          </div>
+                          <small class="text-muted">93% complete</small>
+                        </td>
+                        <td class="text-end"><span class="badge grade-badge">A</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="card p-3">
+                <header class="d-flex align-items-center justify-content-between mb-2">
+                  <h1 class="h6 m-0">Upcoming Deadlines</h1>
+                  <small class="text-muted">Next 2 weeks</small>
+                </header>
+
+                <ul class="list-unstyled mb-0 deadlines-list">
+                  <li class="deadline-item d-flex gap-3 align-items-start">
+                    <div class="date-badge" aria-hidden="true">
+                      <div class="month">Sep</div>
+                      <div class="day">12</div>
+                    </div>
+                    <div>
+                      <div class="fw-600">Project Report — Machine Learning</div>
+                      <small class="text-muted">Due Sep 12, 2025 • Group submission</small>
+                    </div>
+                    <div class="ms-auto">
+                      <span class="badge pill small">Important</span>
+                    </div>
+                  </li>
+
+                  <li class="deadline-item d-flex gap-3 align-items-start">
+                    <div class="date-badge" aria-hidden="true">
+                      <div class="month">Sep</div>
+                      <div class="day">15</div>
+                    </div>
+                    <div>
+                      <div class="fw-600">Midterm Quiz — Data Structures</div>
+                      <small class="text-muted">Due Sep 15, 2025 • Online</small>
+                    </div>
+                    <div class="ms-auto">
+                      <span class="badge pill small neutral">Normal</span>
+                    </div>
+                  </li>
+
+                  <li class="deadline-item d-flex gap-3 align-items-start">
+                    <div class="date-badge" aria-hidden="true">
+                      <div class="month">Sep</div>
+                      <div class="day">18</div>
+                    </div>
+                    <div>
+                      <div class="fw-600">Database Assignment 3</div>
+                      <small class="text-muted">Due Sep 18, 2025 • Individual</small>
+                    </div>
+                    <div class="ms-auto">
+                      <span class="badge pill small warn">Upcoming</span>
+                    </div>
+                  </li>
+                </ul>
+              </article>
+            </section>
+
+            <!-- Right column: Profile card -->
+            <aside class="col-12 col-lg-4">
+              <section class="card p-3 profile-card">
+                <header class="d-flex align-items-center gap-3 mb-3">
+                  <img src="https://media-content.ccbp.in/ccbp_prod/media/profile_pic/45c6637d-c64d-4d4b-88d1-074bbdca668b.jpeg" alt="Student avatar" class="avatar-lg rounded-circle">
+                  <div>
+                    <h3 class="h6 mb-0">Sai Chandu</h3>
+                    <small class="text-muted">Roll: 18BCS123 • CS Dept.</small>
+                  </div>
+                </header>
+
+                <dl class="row mb-3">
+                  <dt class="col-5 text-muted">Email</dt>
+                  <dd class="col-7">saichandu@example.com</dd>
+
+                  <dt class="col-5 text-muted">College</dt>
+                  <dd class="col-7">Malla Reddy Engineering College</dd>
+
+                  <dt class="col-5 text-muted">Department</dt>
+                  <dd class="col-7">Computer Science & Engineering</dd>
+
+                  <dt class="col-5 text-muted">Semester</dt>
+                  <dd class="col-7">6</dd>
+                </dl>
+
+                <div class="d-grid">
+                  <a href="#" class="btn btn-primary btn-sm" role="button">View Full Profile</a>
+                </div>
+              </section>
+
+              <section class="card mt-3 p-3 contacts-card">
+                <h3 class="h6 mb-2">Quick Actions</h3>
+                <div class="d-flex flex-column gap-2">
+                  <a class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2" href="#">
+                    <i class="fa-solid fa-envelope"></i> Message Advisor
+                  </a>
+                  <a class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2" href="#">
+                    <i class="fa-solid fa-file-lines"></i> Download Transcript
+                  </a>
+                </div>
+              </section>
+            </aside>
+          </div>
+
+        </div>
+      </main>
+
+      <footer class="footer text-center py-3">
+        <small class="text-muted">© 2025 EduBoard • Designed for accessibility & responsiveness</small>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>
